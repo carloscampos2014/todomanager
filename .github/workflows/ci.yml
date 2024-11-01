@@ -35,7 +35,7 @@ jobs:
 
       - name: Check Coverage Threshold
         run: |
-          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' TestResults/*/coverage.cobertura.xml) # Ajuste conforme necessário
+          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' TestResults/*/coverage.cobertura.xml)
           THRESHOLD=0.85 # Defina sua porcentagem mínima de cobertura para 85%
           if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
             echo "Coverage $COVERAGE is below threshold $THRESHOLD"
