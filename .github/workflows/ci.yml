@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build, Test, and Validate Coverage
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: '8.0.x' # Especifique a versão do .NET que você está usando
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: dotnet restore TodoManager.sln
@@ -27,5 +27,22 @@ jobs:
       - name: Build
         run: dotnet build TodoManager.sln --configuration Release --no-restore
 
-      - name: Run tests
-        run: dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --verbosity normal
+      - name: Run tests with coverage
+        run: dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
+        env:
+          CoverletOutputFormat: cobertura # Define o formato do relatório
+
+      - name: Generate Coverage Report
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage_report -reporttypes:Html
+
+      - name: Check Coverage Threshold
+        run: |
+          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' coverage_report/Cobertura.xml)
+          THRESHOLD=0.85 # Defina sua porcentagem mínima de cobertura para 85%
+          if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
+            echo "Coverage $COVERAGE is below threshold $THRESHOLD"
+            exit 1
+          fi
+        shell: bash
