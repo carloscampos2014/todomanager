@@ -35,6 +35,10 @@ jobs:
 
       - name: Check Coverage Threshold
         run: |
+          # Exibir o conteúdo do arquivo de cobertura
+          echo "Conteúdo do arquivo de cobertura:"
+          cat tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml
+          
           # Extrai a taxa de cobertura e garante que apenas a primeira linha é usada
           COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml | head -n 1)
           
