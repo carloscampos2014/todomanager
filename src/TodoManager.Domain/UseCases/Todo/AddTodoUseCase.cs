@@ -56,7 +56,15 @@ public class AddTodoUseCase : IAddTodoUseCase
                 throw new InvalidOperationException("Erro na inclusão dos dados.");
             }
 
-            return new ObjectResult(model)
+            return new ObjectResult(new ResponseTodoJson()
+            {
+                Deadline = model.Deadline,
+                Description = model.Description,
+                Id = model.Id,
+                Name = model.Name,
+                Priority = model.Priority,
+                Status = model.Status,
+            })
             {
                 StatusCode = StatusCodes.Status201Created,
             };

@@ -1,4 +1,6 @@
-﻿namespace TodoManager.Domain.Contracts.Response;
+﻿using TodoManager.Domain.Contracts.Dto;
+
+namespace TodoManager.Domain.Contracts.Response;
 
 public class ResponseAllTodoJson
 {

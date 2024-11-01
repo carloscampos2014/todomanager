@@ -15,7 +15,7 @@ namespace TodoManager.Domain.Tests.UseCases.Todo;
 
 public class AddTodoUseCaseTest
 {
-    [Fact(DisplayName = "Não Deve Adicionar Tarefa Quando a Validação Falhar")]
+    [Fact(DisplayName = "Não Deve Adicionar Tarefa Quando a Validação Falhar.")]
     public void Should_NotAddTodo_WhenValidationFail()
     {
         // Arrange
@@ -38,7 +38,7 @@ public class AddTodoUseCaseTest
         todoRespositoryMock.Verify(s => s.Add(It.IsAny<TodoViewModel>()), Times.Never);
     }
 
-    [Fact(DisplayName = "Não Deve Adicionar Tarefa Quando Repositório Falhar na Inclusão")]
+    [Fact(DisplayName = "Não Deve Adicionar Tarefa Quando Repositório Falhar na Inclusão.")]
     public void Should_NotAddTodo_WhenRepositoryFailInclude()
     {
         // Arrange
@@ -62,7 +62,7 @@ public class AddTodoUseCaseTest
     }
 
 
-    [Fact(DisplayName = "Deve Adicionar Tarefa Quando Repositório Incluir com Sucesso")]
+    [Fact(DisplayName = "Deve Adicionar Tarefa Quando Repositório Incluir com Sucesso.")]
     public void Should_AddTodo_WhenRepositoryIncludeSucess()
     {
         // Arrange

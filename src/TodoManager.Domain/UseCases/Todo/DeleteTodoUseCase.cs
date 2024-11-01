@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using TodoManager.Domain.Contracts.Dto;
 using TodoManager.Domain.Contracts.Interfaces.Repositories;
 using TodoManager.Domain.Contracts.Interfaces.UseCases.Todo;
 using TodoManager.Domain.Contracts.Response;
