@@ -29,17 +29,13 @@ jobs:
 
       - name: Run tests with coverage
         run: dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
-        env:
-          CoverletOutputFormat: cobertura # Define o formato do relatório
 
-      - name: Generate Coverage Report
-        run: |
-          dotnet tool install --global dotnet-reportgenerator-globaltool
-          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage_report -reporttypes:Html
+      - name: List TestResults
+        run: ls -R TestResults
 
       - name: Check Coverage Threshold
         run: |
-          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' coverage_report/Cobertura.xml)
+          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' TestResults/**/*.xml) # Ajuste o caminho conforme necessário
           THRESHOLD=0.85 # Defina sua porcentagem mínima de cobertura para 85%
           if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
             echo "Coverage $COVERAGE is below threshold $THRESHOLD"
