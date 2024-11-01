@@ -31,11 +31,11 @@ jobs:
         run: |
           dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
           echo "Test Results:"
-          ls -R TestResults # Verifique se o diretório TestResults está presente
+          ls -R tests/TodoManager.Domain.Tests/TestResults # Verifique se o diretório TestResults está presente
 
       - name: Check Coverage Threshold
         run: |
-          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' TestResults/*/coverage.cobertura.xml)
+          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml)
           THRESHOLD=0.85 # Defina sua porcentagem mínima de cobertura para 85%
           if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
             echo "Coverage $COVERAGE is below threshold $THRESHOLD"
