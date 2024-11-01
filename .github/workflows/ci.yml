@@ -28,14 +28,14 @@ jobs:
         run: dotnet build TodoManager.sln --configuration Release --no-restore
 
       - name: Run tests with coverage
-        run: dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
-
-      - name: List TestResults
-        run: ls -R TestResults
+        run: |
+          dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
+          echo "Test Results:"
+          ls -R TestResults # Verifique se o diretório TestResults está presente
 
       - name: Check Coverage Threshold
         run: |
-          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' TestResults/**/*.xml) # Ajuste o caminho conforme necessário
+          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' TestResults/*/coverage.cobertura.xml) # Ajuste conforme necessário
           THRESHOLD=0.85 # Defina sua porcentagem mínima de cobertura para 85%
           if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
             echo "Coverage $COVERAGE is below threshold $THRESHOLD"
