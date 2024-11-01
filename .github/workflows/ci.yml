@@ -29,28 +29,27 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
-          echo "Test Results:"
-          ls -R tests/TodoManager.Domain.Tests/TestResults # Verifique se o diretório TestResults está presente
+            dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
+            echo "Test Results:"
+            ls -R tests/TodoManager.Domain.Tests/TestResults # Verifique se o diretório TestResults está presente
 
       - name: Check Coverage Threshold
         run: |
-          # Exibir o conteúdo do arquivo de cobertura
-          echo "Conteúdo do arquivo de cobertura:"
-          cat tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml
-          
-          # Extrai a taxa de cobertura e garante que apenas a primeira linha é usada
-          COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml | head -n 1)
-          
-          # Remove o ponto e converte para um número de ponto flutuante
-          COVERAGE=$(echo "$COVERAGE" | tr -d '\n')
-          
-          # Defina sua porcentagem mínima de cobertura para 85%
-          THRESHOLD=0.85 
+            # Extrai a taxa de cobertura e garante que apenas a primeira linha é usada
+            COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml | head -n 1)
+    
+            # Remove o ponto e converte para um número de ponto flutuante
+            COVERAGE=$(echo "$COVERAGE" | tr -d '\n')
+    
+            # Exibe a porcentagem de cobertura
+            echo "Porcentagem de Cobertura: $COVERAGE"
+    
+            # Defina sua porcentagem mínima de cobertura para 85%
+            THRESHOLD=0.85 
 
-          # Verifica se a cobertura é menor que o limite
-          if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
-            echo "Coverage $COVERAGE is below threshold $THRESHOLD"
-            exit 1
-          fi
+            # Verifica se a cobertura é menor que o limite
+            if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
+                echo "Coverage $COVERAGE is below threshold $THRESHOLD"
+                exit 1
+            fi
         shell: bash
