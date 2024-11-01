@@ -19,7 +19,7 @@ public class AddTodoUseCaseTest
     public void Should_NotAddTodo_WhenValidationFail()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateObject();
+        RequestTodoJson request = TodoFaker.GenerateRequestObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult(new List<ValidationFailure>() { new ValidationFailure(nameof(RequestTodoJson), "O objeto da lista não pode ser nulo.") });
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
@@ -42,7 +42,7 @@ public class AddTodoUseCaseTest
     public void Should_NotAddTodo_WhenRepositoryFailInclude()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateObject();
+        RequestTodoJson request = TodoFaker.GenerateRequestObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
@@ -66,7 +66,7 @@ public class AddTodoUseCaseTest
     public void Should_AddTodo_WhenRepositoryIncludeSucess()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateObject();
+        RequestTodoJson request = TodoFaker.GenerateRequestObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);

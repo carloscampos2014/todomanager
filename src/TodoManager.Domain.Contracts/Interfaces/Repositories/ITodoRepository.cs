@@ -8,7 +8,7 @@ public interface ITodoRepository
 
     bool Delete(TodoViewModel model);
 
-    TodoViewModel? GetById(int id);
+    TodoViewModel? GetById(Guid id);
 
     IEnumerable<TodoViewModel> GetAll();
 

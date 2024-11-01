@@ -23,7 +23,7 @@ public class RequestTodoValidatorTest
     public static IEnumerable<object[]> GenerateValid()
     {
         var random = new Random();
-        var list = TodoFaker.GenerateList(random.Next(1, 11));
+        var list = TodoFaker.GenerateRequestList(random.Next(1, 11));
         foreach (var item in list)
         {
             yield return new object[] { item };
