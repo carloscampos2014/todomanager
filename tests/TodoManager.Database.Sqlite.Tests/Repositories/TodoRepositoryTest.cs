@@ -3,6 +3,7 @@ using TodoManager.Database.Sqlite.Repositories;
 using TodoManager.Database.Sqlite.Tests.Faker;
 using TodoManager.Database.Sqlite.Tests.Fixtures;
 using TodoManager.Domain.Contracts.Dto;
+using TodoManager.Domain.Contracts.Response;
 
 namespace TodoManager.Database.Sqlite.Tests.Repositories;
 
@@ -14,6 +15,18 @@ public class TodoRepositoryTest
     public TodoRepositoryTest(DataBaseFixture fixture)
     {
         _fixture = fixture;
+        var responseAll = new ResponseAllTodoJson()
+        {
+            Todos = [],
+        };
+
+        var responseErrors = new ResponseErrorsJson()
+        {
+            Errors = []
+        };
+
+        Console.WriteLine(responseAll);
+        Console.WriteLine(responseErrors);
     }
 
     [Fact(DisplayName = "Não Deve Adicionar Tarefa Quando Receber um Modelo Nulo.")]
