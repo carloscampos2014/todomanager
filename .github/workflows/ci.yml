@@ -82,8 +82,7 @@ jobs:
       - name: Generate Combined HTML Coverage Report
         run: |
           echo "Generating combined HTML coverage report..."
-          reportgenerator -reports:tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml \
-                          -reports:tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml \
+          reportgenerator -reports:"tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml;tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml" \
                           -targetdir:coverage-report/combined \
                           -reporttypes:Html
           echo "Combined HTML coverage report generated in coverage-report/combined."
