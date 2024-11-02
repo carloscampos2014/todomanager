@@ -28,7 +28,8 @@ public class UpdateTodoUseCaseTest
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(true);
 
         // Act
-        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object)
+            .Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -54,7 +55,8 @@ public class UpdateTodoUseCaseTest
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(false);
 
         // Act
-        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object)
+            .Execute(id, request);
 
         // Asserts
         actual.Should().BeOfType<NotFoundObjectResult>()
@@ -79,7 +81,8 @@ public class UpdateTodoUseCaseTest
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(false);
 
         // Act
-        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object)
+            .Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -104,7 +107,8 @@ public class UpdateTodoUseCaseTest
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(true);
 
         // Act
-        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object)
+            .Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<OkObjectResult>()
