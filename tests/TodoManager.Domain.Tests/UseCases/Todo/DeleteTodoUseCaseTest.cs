@@ -42,7 +42,7 @@ public class DeleteTodoUseCaseTest
         todoRespositoryMock.Setup(s => s.Delete(model)).Returns(false);
 
         // Act
-        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(id);
+        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(model.Id);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -62,7 +62,7 @@ public class DeleteTodoUseCaseTest
         todoRespositoryMock.Setup(s => s.Delete(model)).Returns(true);
 
         // Act
-        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(id);
+        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(model.Id);
 
         // Asserts
         actual.Should().BeOfType<NoContentResult>()
