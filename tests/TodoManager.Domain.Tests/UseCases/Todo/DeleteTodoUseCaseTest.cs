@@ -27,7 +27,7 @@ public class DeleteTodoUseCaseTest
         IActionResult actual = useCase.Execute(id);
 
         // Asserts
-        actual.Should().BeOfType<ObjectResult>()
+        actual.Should().BeOfType<NotFoundObjectResult>()
             .Which.StatusCode.Should().Be(StatusCodes.Status404NotFound);
 
         todoRespositoryMock.Verify(s => s.GetById(id), Times.Exactly(1));

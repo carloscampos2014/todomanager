@@ -50,7 +50,7 @@ public class GetAllTodoUseCaseTest
     }
 
     [Fact(DisplayName = "Deve Retornar 200Ok Quando Repositório Retornar Lista Preenchida.")]
-    public void Should_ReturnNoContent_WhenRepositoryReturnsCompleteList()
+    public void Should_Return200OK_WhenRepositoryReturnsCompleteList()
     {
         // Arrange
         var list = TodoFaker.GenerateTodoList(10);

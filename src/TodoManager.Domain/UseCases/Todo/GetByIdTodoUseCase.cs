@@ -6,11 +6,11 @@ using TodoManager.Domain.Contracts.Response;
 
 namespace TodoManager.Domain.UseCases.Todo;
 
-public class DeleteTodoUseCase : IDeleteTodoUseCase
+public class GetByIdTodoUseCase : IGetByIdTodoUseCase
 {
     private readonly ITodoRepository _todoRepository;
 
-    public DeleteTodoUseCase(ITodoRepository todoRepository)
+    public GetByIdTodoUseCase(ITodoRepository todoRepository)
     {
         _todoRepository = todoRepository;
     }
@@ -31,14 +31,15 @@ public class DeleteTodoUseCase : IDeleteTodoUseCase
                 return new NotFoundObjectResult(error);
             }
 
-            var resultrepository = _todoRepository.Delete(model);
-
-            if (!resultrepository)
+            return new OkObjectResult(new ResponseTodoJson()
             {
-                throw new InvalidOperationException("Erro na inclusão dos dados.");
-            }
-
-            return new NoContentResult();
+                Deadline = model.Deadline,
+                Description = model.Description,
+                Id = model.Id,
+                Name = model.Name,
+                Priority = model.Priority,
+                Status = model.Status,
+            });
         }
         catch (Exception)
         {
