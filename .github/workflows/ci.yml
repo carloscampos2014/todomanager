@@ -48,7 +48,7 @@ jobs:
             DATABASE_COVERAGE_FILE=$(find tests/TodoManager.Database.Sqlite.Tests/TestResults -name 'coverage.cobertura.xml' | head -n 1)
 
             if [ -z "$DOMAIN_COVERAGE_FILE" ] || [ -z "$DATABASE_COVERAGE_FILE" ]; then
-                echo "Erro: Arquivo de cobertura nao encontrado para um ou ambos os projetos."
+                echo "Erro: Arquivo de cobertura não encontrado para um ou ambos os projetos."
                 exit 1
             fi
 
@@ -80,6 +80,8 @@ jobs:
             cp tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml coverage/database-coverage.xml
 
       - name: Publish Coverage Report to GitHub Pages
+        env:
+          MY_CUSTOM_TOKEN: ${{ secrets.MY_CUSTOM_TOKEN }}
         run: |
           mkdir coverage-report
           cp coverage/domain-coverage.xml coverage-report/
@@ -92,5 +94,5 @@ jobs:
           git rm -rf .
           mv coverage-report/* .
           git add .
-          git commit -m "Atualizar relatorio de cobertura"
-          git push --force origin gh-pages
+          git commit -m "Atualizar relatório de cobertura" || echo "No changes to commit"
+          git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
