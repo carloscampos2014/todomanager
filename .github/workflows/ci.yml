@@ -83,8 +83,6 @@ jobs:
           MY_CUSTOM_TOKEN: ${{ secrets.MY_CUSTOM_TOKEN }}
         run: |
           mkdir -p coverage-report  # Use -p to avoid errors if the directory exists
-          cp coverage/domain-coverage.xml coverage-report/
-          cp coverage/database-coverage.xml coverage-report/
           cp -R coverage-report/combined/* coverage-report/  # Copia os relatórios HTML combinados para a raiz
 
           git config --global user.name 'github-actions'
