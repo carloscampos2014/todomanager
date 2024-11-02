@@ -73,11 +73,10 @@ jobs:
             echo "Cobertura dos testes dentro do limite esperado"
         shell: bash
 
-      - name: Copy Coverage Report
+      - name: Generate Combined HTML Coverage Report
         run: |
-            mkdir -p coverage
-            cp tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml coverage/domain-coverage.xml
-            cp tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml coverage/database-coverage.xml
+            dotnet tool install -g dotnet-reportgenerator-globaltool
+            reportgenerator -reports:tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml -reports:tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml -targetdir:coverage-report/combined -reporttypes:Html
 
       - name: Publish Coverage Report to GitHub Pages
         env:
@@ -86,13 +85,14 @@ jobs:
           mkdir coverage-report
           cp coverage/domain-coverage.xml coverage-report/
           cp coverage/database-coverage.xml coverage-report/
+          cp -R coverage-report/combined/* coverage-report/  # Copia os relatórios HTML combinados para a raiz
 
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
           git checkout -b gh-pages
-          git rm -rf .
-          mv coverage-report/* .
+          git rm -rf .  # Remove arquivos existentes
+          mv coverage-report/* .  # Move os relatórios de cobertura para a raiz
           git add .
           git commit -m "Atualizar relatório de cobertura" || echo "No changes to commit"
           git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
