@@ -73,16 +73,26 @@ jobs:
             echo "Cobertura dos testes dentro do limite esperado"
         shell: bash
 
+      - name: Install ReportGenerator Tool
+        run: |
+          echo "Installing ReportGenerator tool..."
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          echo "ReportGenerator installed."
+
       - name: Generate Combined HTML Coverage Report
         run: |
-            dotnet tool install -g dotnet-reportgenerator-globaltool
-            reportgenerator -reports:tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml -reports:tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml -targetdir:coverage-report/combined -reporttypes:Html
+          echo "Generating combined HTML coverage report..."
+          reportgenerator -reports:tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml \
+                          -reports:tests/TodoManager.Database.Sqlite.Tests/TestResults/*/coverage.cobertura.xml \
+                          -targetdir:coverage-report/combined \
+                          -reporttypes:Html
+          echo "Combined HTML coverage report generated in coverage-report/combined."
 
       - name: Print Coverage Report Links
         run: |
-            echo "Relatório de Cobertura do TodoManager.Domain: https://<username>.github.io/<repo>/coverage-report/domain-coverage.html"
-            echo "Relatório de Cobertura do TodoManager.Database: https://<username>.github.io/<repo>/coverage-report/database-coverage.html"
-            echo "Relatório de Cobertura Combinado: https://<username>.github.io/<repo>/coverage-report/combined/index.html"
+            echo "Relatório de Cobertura do TodoManager.Domain: https://carloscampos2014.github.io/todomanager/coverage-report/domain-coverage.html"
+            echo "Relatório de Cobertura do TodoManager.Database: https://carloscampos2014.github.io/todomanager/coverage-report/database-coverage.html"
+            echo "Relatório de Cobertura Combinado: https://carloscampos2014.github.io/todomanager/coverage-report/combined/index.html"
 
       - name: Publish Coverage Report to GitHub Pages
         env:
