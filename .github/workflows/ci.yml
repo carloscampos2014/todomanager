@@ -97,15 +97,13 @@ jobs:
         env:
           MY_CUSTOM_TOKEN: ${{ secrets.MY_CUSTOM_TOKEN }}
         run: |
-          mkdir -p coverage-report  # Use -p to avoid errors if the directory exists
-          cp -R coverage-report/combined/* coverage-report/  # Copia os relatórios HTML combinados para a raiz
-
+          echo "Publishing coverage report to GitHub Pages..."
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
           git checkout -b gh-pages
           git rm -rf .  # Remove arquivos existentes
-          mv coverage-report/* .  # Move os relatórios de cobertura para a raiz
+          mv coverage-report/combined/* .  # Move os relatórios de cobertura para a raiz
           git add .
           git commit -m "Atualizar relatório de cobertura" || echo "No changes to commit"
           git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
