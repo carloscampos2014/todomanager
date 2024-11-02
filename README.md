@@ -15,9 +15,8 @@
 
 O relatório de cobertura dos testes está disponível no GitHub Pages. Você pode acessá-lo clicando nos links abaixo:
 
-- [Relatório de Cobertura do TodoManager.Domain](https://carloscampos2014.github.io/todomanager/coverage-report/domain-coverage.html)
-- [Relatório de Cobertura do TodoManager.Database.Sqlite](https://carloscampos2014.github.io/todomanager/coverage-report/database-coverage.html)
-- [Relatório de Cobertura Combinado](https://carloscampos2014.github.io/todomanager/coverage-report/combined/index.html)
+- [Relatório de Cobertura do TodoManager.Domain](https://carloscampos2014.github.io/todomanager/domain-coverage)
+- [Relatório de Cobertura do TodoManager.Database.Sqlite](https://carloscampos2014.github.io/todomanager/database-coverage/)
 
 ## Objetivo
 

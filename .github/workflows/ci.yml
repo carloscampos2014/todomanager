@@ -124,3 +124,20 @@ jobs:
           git add .
           git commit -m "Atualizar relatório de cobertura" || echo "No changes to commit"
           git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
+
+      - name: Clean Up gh-pages
+        env:
+          MY_CUSTOM_TOKEN: ${{ secrets.MY_CUSTOM_TOKEN }}
+        run: |
+          echo "Limpando arquivos indesejados na branch gh-pages..."
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          
+          git checkout gh-pages
+          
+          # Remove todas as pastas e arquivos, exceto 'domain-coverage' e 'database-coverage'
+          find . -mindepth 1 -not -name 'domain-coverage' -not -name 'database-coverage' -exec rm -rf {} +
+          
+          git add .
+          git commit -m "Remover arquivos indesejados, mantendo apenas domain-coverage e database-coverage" || echo "Nenhuma alteração a ser comitada"
+          git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
