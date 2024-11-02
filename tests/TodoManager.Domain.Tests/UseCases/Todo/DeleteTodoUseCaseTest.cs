@@ -19,7 +19,7 @@ public class DeleteTodoUseCaseTest
         TodoViewModel model = null;
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(id)).Returns(model);
-        todoRespositoryMock.Setup(s => s.Delete(model)).Returns(true);
+        todoRespositoryMock.Setup(s => s.Delete(id)).Returns(true);
 
         // Act
         var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(id);
@@ -29,7 +29,7 @@ public class DeleteTodoUseCaseTest
             .Which.StatusCode.Should().Be(StatusCodes.Status404NotFound);
 
         todoRespositoryMock.Verify(s => s.GetById(id), Times.Exactly(1));
-        todoRespositoryMock.Verify(s => s.Delete(model), Times.Never);
+        todoRespositoryMock.Verify(s => s.Delete(id), Times.Never);
     }
 
     [Fact(DisplayName = "Não Deve Excluir Tarefa Quando Repositório Falhar na Exclusão.")]
@@ -39,7 +39,7 @@ public class DeleteTodoUseCaseTest
         var model = TodoFaker.GenerateTodoObject();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
-        todoRespositoryMock.Setup(s => s.Delete(model)).Returns(false);
+        todoRespositoryMock.Setup(s => s.Delete(model.Id)).Returns(false);
 
         // Act
         var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(model.Id);
@@ -49,7 +49,7 @@ public class DeleteTodoUseCaseTest
             .Which.StatusCode.Should().Be(StatusCodes.Status500InternalServerError);
 
         todoRespositoryMock.Verify(s => s.GetById(model.Id), Times.Exactly(1));
-        todoRespositoryMock.Verify(s => s.Delete(model), Times.Exactly(1));
+        todoRespositoryMock.Verify(s => s.Delete(model.Id), Times.Exactly(1));
     }
 
     [Fact(DisplayName = "Deve Excluir Tarefa Quando Repositório Excluir com Sucesso.")]
@@ -59,7 +59,7 @@ public class DeleteTodoUseCaseTest
         var model = TodoFaker.GenerateTodoObject();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
-        todoRespositoryMock.Setup(s => s.Delete(model)).Returns(true);
+        todoRespositoryMock.Setup(s => s.Delete(model.Id)).Returns(true);
 
         // Act
         var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(model.Id);
@@ -69,6 +69,6 @@ public class DeleteTodoUseCaseTest
             .Which.StatusCode.Should().Be(StatusCodes.Status204NoContent);
 
         todoRespositoryMock.Verify(s => s.GetById(model.Id), Times.Exactly(1));
-        todoRespositoryMock.Verify(s => s.Delete(model), Times.Exactly(1));
+        todoRespositoryMock.Verify(s => s.Delete(model.Id), Times.Exactly(1));
     }
 }

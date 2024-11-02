@@ -36,9 +36,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoManager.Domain.Contract
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoManager.API", "src\TodoManager.API\TodoManager.API.csproj", "{D3E18E25-1AF6-43C0-ACE5-AE419739B2C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Domain", "src\TodoManager.Domain\TodoManager.Domain.csproj", "{77BA1A90-C3DC-465C-894B-940243E2678F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoManager.Domain", "src\TodoManager.Domain\TodoManager.Domain.csproj", "{77BA1A90-C3DC-465C-894B-940243E2678F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Domain.Tests", "tests\TodoManager.Domain.Tests\TodoManager.Domain.Tests.csproj", "{E648EE57-5DB6-4E88-9136-C2D375B06B59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoManager.Domain.Tests", "tests\TodoManager.Domain.Tests\TodoManager.Domain.Tests.csproj", "{E648EE57-5DB6-4E88-9136-C2D375B06B59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Database.Sqlite", "src\TodoManager.Database.Sqlite\TodoManager.Database.Sqlite.csproj", "{B20CD2DD-CD1B-4663-8314-3C4040C1E172}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Database.Sqlite.Tests", "tests\TodoManager.Database.Sqlite.Tests\TodoManager.Database.Sqlite.Tests.csproj", "{621C5A3E-A95D-4B65-9027-20985B949FF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +66,14 @@ Global
 		{E648EE57-5DB6-4E88-9136-C2D375B06B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E648EE57-5DB6-4E88-9136-C2D375B06B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E648EE57-5DB6-4E88-9136-C2D375B06B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B20CD2DD-CD1B-4663-8314-3C4040C1E172}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B20CD2DD-CD1B-4663-8314-3C4040C1E172}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B20CD2DD-CD1B-4663-8314-3C4040C1E172}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B20CD2DD-CD1B-4663-8314-3C4040C1E172}.Release|Any CPU.Build.0 = Release|Any CPU
+		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +91,8 @@ Global
 		{D3E18E25-1AF6-43C0-ACE5-AE419739B2C4} = {D4446931-C54C-4050-8106-7B4A1BB0D942}
 		{77BA1A90-C3DC-465C-894B-940243E2678F} = {2DD05E7A-DCAD-40AF-81D5-91940BE749C8}
 		{E648EE57-5DB6-4E88-9136-C2D375B06B59} = {4AF02D0D-DB72-4C46-8BF0-96581C826D05}
+		{B20CD2DD-CD1B-4663-8314-3C4040C1E172} = {4D12026E-06D1-4ED4-ADFD-C323F5DFD2CC}
+		{621C5A3E-A95D-4B65-9027-20985B949FF8} = {91B3B2D3-141E-4225-9E4D-3F8861B8C983}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A4224EA-6B27-4ABB-90B6-42A360370691}

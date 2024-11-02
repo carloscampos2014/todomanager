@@ -6,7 +6,7 @@ public interface ITodoRepository
 {
     bool Add(TodoViewModel model);
 
-    bool Delete(TodoViewModel model);
+    bool Delete(Guid id);
 
     TodoViewModel? GetById(Guid id);
 

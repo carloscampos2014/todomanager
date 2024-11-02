@@ -31,11 +31,11 @@ public class DeleteTodoUseCase : IDeleteTodoUseCase
                 return new NotFoundObjectResult(error);
             }
 
-            var resultrepository = _todoRepository.Delete(model);
+            var resultrepository = _todoRepository.Delete(model.Id);
 
             if (!resultrepository)
             {
-                throw new InvalidOperationException("Erro na inclusão dos dados.");
+                throw new InvalidOperationException("Erro na exclusão dos dados.");
             }
 
             return new NoContentResult();

@@ -29,27 +29,46 @@ jobs:
 
       - name: Run tests with coverage
         run: |
+            # Executa os testes de ambos os projetos com cobertura
             dotnet test tests/TodoManager.Domain.Tests/TodoManager.Domain.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
+            dotnet test tests/TodoManager.Database.Sqlite.Tests/TodoManager.Database.Sqlite.Tests.csproj --configuration Release --no-build --collect:"XPlat Code Coverage" --verbosity normal
             echo "Test Results:"
-            ls -R tests/TodoManager.Domain.Tests/TestResults # Verifique se o diretório TestResults está presente
+            ls -R tests/TodoManager.Domain.Tests/TestResults
+            ls -R tests/TodoManager.Database.Sqlite.Tests/TestResults
 
       - name: Check Coverage Threshold
         run: |
-            # Extrai a taxa de cobertura e garante que apenas a primeira linha é usada
-            COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' tests/TodoManager.Domain.Tests/TestResults/*/coverage.cobertura.xml | head -n 1)
-    
-            # Remove o ponto e converte para um número de ponto flutuante
-            COVERAGE=$(echo "$COVERAGE" | tr -d '\n')
-    
-            # Exibe a porcentagem de cobertura
-            echo "Porcentagem de Cobertura: $COVERAGE"
-    
+            # Define o caminho dos arquivos de cobertura
+            DOMAIN_COVERAGE_FILE=$(find tests/TodoManager.Domain.Tests/TestResults -name 'coverage.cobertura.xml' | head -n 1)
+            DATABASE_COVERAGE_FILE=$(find tests/TodoManager.Database.Sqlite.Tests/TestResults -name 'coverage.cobertura.xml' | head -n 1)
+
+            # Verifica se ambos os arquivos de cobertura existem
+            if [ -z "$DOMAIN_COVERAGE_FILE" ] || [ -z "$DATABASE_COVERAGE_FILE" ]; then
+                echo "Erro: Arquivo de cobertura não encontrado para um ou ambos os projetos."
+                exit 1
+            fi
+
+            # Extrai as taxas de cobertura (line-rate)
+            DOMAIN_COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' "$DOMAIN_COVERAGE_FILE" | head -n 1)
+            DATABASE_COVERAGE=$(grep -oP '(?<=line-rate=")[^"]+' "$DATABASE_COVERAGE_FILE" | head -n 1)
+
+            # Exibe as porcentagens de cobertura
+            echo "Cobertura TodoManager.Domain.Tests: $DOMAIN_COVERAGE"
+            echo "Cobertura TodoManager.Database.Sqlite.Tests: $DATABASE_COVERAGE"
+
             # Defina sua porcentagem mínima de cobertura para 85%
             THRESHOLD=0.85 
 
-            # Verifica se a cobertura é menor que o limite
-            if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
-                echo "Coverage $COVERAGE is below threshold $THRESHOLD"
+            # Verifica se as coberturas são menores que o limite
+            if (( $(echo "$DOMAIN_COVERAGE < $THRESHOLD" | bc -l) )); then
+                echo "Cobertura TodoManager.Domain.Tests $DOMAIN_COVERAGE está abaixo do limite $THRESHOLD"
                 exit 1
             fi
+
+            if (( $(echo "$DATABASE_COVERAGE < $THRESHOLD" | bc -l) )); then
+                echo "Cobertura TodoManager.Database.Tests $DATABASE_COVERAGE está abaixo do limite $THRESHOLD"
+                exit 1
+            fi
+
+            echo "Cobertura dos testes dentro do limite esperado"
         shell: bash
