@@ -97,31 +97,14 @@ jobs:
 
       - name: Print Coverage Report Links
         run: |
-            echo "Relatório de Cobertura do TodoManager.Domain: https://carloscampos2014.github.io/todomanager/coverage-report/domain-coverage/index.html"
-            echo "Relatório de Cobertura do TodoManager.Database: https://carloscampos2014.github.io/todomanager/coverage-report/database-coverage/index.html"
+            echo "Relatório de Cobertura do TodoManager.Domain: https://carloscampos2014.github.io/todomanager/domain-coverage/index.html"
+            echo "Relatório de Cobertura do TodoManager.Database: https://carloscampos2014.github.io/todomanager/database-coverage/index.html"
 
       - name: Verify Coverage Report Before Publishing
         run: |
           echo "Verificando a estrutura do diretório antes da publicação..."
           ls -R coverage-report/domain-coverage
           ls -R coverage-report/database-coverage
-
-      - name: Clean Up gh-pages
-        env:
-          MY_CUSTOM_TOKEN: ${{ secrets.MY_CUSTOM_TOKEN }}
-        run: |
-          echo "Limpando arquivos indesejados na branch gh-pages..."
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          
-          git checkout gh-pages
-          
-          # Remove todas as pastas e arquivos, exceto 'domain-coverage' e 'database-coverage'
-          find . -mindepth 1 -not -name 'domain-coverage' -not -name 'database-coverage' -exec rm -rf {} +
-
-          git add .
-          git commit -m "Remover arquivos indesejados, mantendo apenas domain-coverage e database-coverage" || echo "Nenhuma alteração a ser comitada"
-          git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
 
       - name: Publish Coverage Report to GitHub Pages
         env:
