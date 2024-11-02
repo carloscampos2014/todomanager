@@ -103,24 +103,24 @@ jobs:
       - name: Verify Coverage Report Before Publishing
         run: |
           echo "Verificando a estrutura do diretório antes da publicação..."
-          ls -R coverage-report/domain-coverage
-          ls -R coverage-report/database-coverage
+          ls -R coverage-report/domain-coverage  # Verifica o conteúdo dos relatórios do domínio
+          ls -R coverage-report/database-coverage  # Verifica o conteúdo dos relatórios do banco de dados
 
       - name: Publish Coverage Report to GitHub Pages
         env:
           MY_CUSTOM_TOKEN: ${{ secrets.MY_CUSTOM_TOKEN }}
         run: |
           echo "Publicando relatório de cobertura no GitHub Pages..."
-          mkdir -p coverage-report
-          cp -R coverage-report/domain-coverage/* coverage-report/
-          cp -R coverage-report/database-coverage/* coverage-report/
+          mkdir -p coverage-report  # Usa -p para evitar erros se o diretório existir
+          cp -R coverage-report/domain-coverage/* coverage-report/  # Copia os relatórios HTML do domínio para a raiz
+          cp -R coverage-report/database-coverage/* coverage-report/  # Copia os relatórios HTML do banco de dados para a raiz
 
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-          git checkout gh-pages
+          git checkout -b gh-pages
           git rm -rf .  # Remove arquivos existentes
           mv coverage-report/* .  # Move os relatórios de cobertura para a raiz
           git add .
-          git commit -m "Publicar novos relatórios de cobertura" || echo "Nenhuma alteração a ser comitada"
+          git commit -m "Atualizar relatório de cobertura" || echo "No changes to commit"
           git push --force https://$MY_CUSTOM_TOKEN@github.com/carloscampos2014/todomanager.git gh-pages
