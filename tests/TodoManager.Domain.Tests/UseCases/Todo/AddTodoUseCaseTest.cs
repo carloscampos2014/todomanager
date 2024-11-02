@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TodoManager.Domain.Contracts.Dto;
 using TodoManager.Domain.Contracts.Interfaces.Repositories;
-using TodoManager.Domain.Contracts.Interfaces.UseCases.Todo;
 using TodoManager.Domain.Contracts.Requests;
 using TodoManager.Domain.Tests.Faker;
 using TodoManager.Domain.UseCases.Todo;
@@ -19,16 +18,15 @@ public class AddTodoUseCaseTest
     public void Should_NotAddTodo_WhenValidationFail()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
+        var request = TodoFaker.GenerateRequestObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult(new List<ValidationFailure>() { new ValidationFailure(nameof(RequestTodoJson), "O objeto da lista não pode ser nulo.") });
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.Add(It.IsAny<TodoViewModel>())).Returns(true);
-        IAddTodoUseCase useCase = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(request);
+        var actual = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -42,16 +40,15 @@ public class AddTodoUseCaseTest
     public void Should_NotAddTodo_WhenRepositoryFailInclude()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
+        var request = TodoFaker.GenerateRequestObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.Add(It.IsAny<TodoViewModel>())).Returns(false);
-        IAddTodoUseCase useCase = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(request);
+        var actual = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -66,16 +63,15 @@ public class AddTodoUseCaseTest
     public void Should_AddTodo_WhenRepositoryIncludeSucess()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
+        var request = TodoFaker.GenerateRequestObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.Add(It.IsAny<TodoViewModel>())).Returns(true);
-        IAddTodoUseCase useCase = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(request);
+        var actual = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()

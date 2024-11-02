@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentValidation.Results;
 using TodoManager.Domain.Contracts.Requests;
 using TodoManager.Domain.Tests.Faker;

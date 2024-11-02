@@ -18,10 +18,9 @@ public class GetAllTodoUseCaseTest
         // Arrange
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetAll()).Throws(new Exception());
-        IGetAllTodoUseCase useCase = new GetAllTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        var actual = useCase.Execute();
+        var actual = new GetAllTodoUseCase(todoRespositoryMock.Object).Execute();
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -37,10 +36,9 @@ public class GetAllTodoUseCaseTest
         var list = new List<TodoViewModel>();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetAll()).Returns(list);
-        IGetAllTodoUseCase useCase = new GetAllTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        var actual = useCase.Execute();
+        var actual = new GetAllTodoUseCase(todoRespositoryMock.Object).Execute();
 
         // Asserts
         actual.Should().BeOfType<NoContentResult>()
@@ -56,10 +54,9 @@ public class GetAllTodoUseCaseTest
         var list = TodoFaker.GenerateTodoList(10);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetAll()).Returns(list);
-        IGetAllTodoUseCase useCase = new GetAllTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        var actual = useCase.Execute();
+        var actual = new GetAllTodoUseCase(todoRespositoryMock.Object).Execute();
 
         // Asserts
         actual.Should().BeOfType<OkObjectResult>()

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TodoManager.Domain.Contracts.Dto;
 using TodoManager.Domain.Contracts.Interfaces.Repositories;
-using TodoManager.Domain.Contracts.Interfaces.UseCases.Todo;
 using TodoManager.Domain.Tests.Faker;
 using TodoManager.Domain.UseCases.Todo;
 
@@ -16,13 +15,12 @@ public class GetByIdTodoUseCaseTest
     public void Should_ReturnInternalServerError_WhenOccursExceptionRepository()
     {
         // Arrange
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var model = TodoFaker.GenerateTodoObject();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Throws(new Exception());
-        IGetByIdTodoUseCase useCase = new GetByIdTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        var actual = useCase.Execute(model.Id);
+        var actual = new GetByIdTodoUseCase(todoRespositoryMock.Object).Execute(model.Id);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -35,14 +33,13 @@ public class GetByIdTodoUseCaseTest
     public void Should_ReturnNotFound_WhenRepositoryNotFoundRegister()
     {
         // Arrange
-        Guid id = Guid.NewGuid();
+        var id = Guid.NewGuid();
         TodoViewModel model = null;
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(id)).Returns(model);
-        IGetByIdTodoUseCase useCase = new GetByIdTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        var actual = useCase.Execute(id);
+        var actual = new GetByIdTodoUseCase(todoRespositoryMock.Object).Execute(id);
 
         // Asserts
         actual.Should().BeOfType<NotFoundObjectResult>()
@@ -55,13 +52,12 @@ public class GetByIdTodoUseCaseTest
     public void Should_Return200OK_WhenRepositoryFoundRegister()
     {
         // Arrange
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var model = TodoFaker.GenerateTodoObject();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
-        IGetByIdTodoUseCase useCase = new GetByIdTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        var actual = useCase.Execute(model.Id);
+        var actual = new GetByIdTodoUseCase(todoRespositoryMock.Object).Execute(model.Id);
 
         // Asserts
         actual.Should().BeOfType<OkObjectResult>()

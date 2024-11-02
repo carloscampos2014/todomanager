@@ -1,15 +1,14 @@
-﻿using FluentValidation.Results;
+﻿using FluentAssertions;
 using FluentValidation;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using TodoManager.Domain.Contracts.Dto;
 using TodoManager.Domain.Contracts.Interfaces.Repositories;
-using TodoManager.Domain.Contracts.Interfaces.UseCases.Todo;
 using TodoManager.Domain.Contracts.Requests;
 using TodoManager.Domain.Tests.Faker;
 using TodoManager.Domain.UseCases.Todo;
-using TodoManager.Domain.Contracts.Dto;
-using FluentAssertions;
 
 namespace TodoManager.Domain.Tests.UseCases.Todo;
 
@@ -19,18 +18,17 @@ public class UpdateTodoUseCaseTest
     public void Should_NotUpdateTodo_WhenValidationFail()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var request = TodoFaker.GenerateRequestObject();
+        var model = TodoFaker.GenerateTodoObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult(new List<ValidationFailure>() { new ValidationFailure(nameof(RequestTodoJson), "O objeto da lista não pode ser nulo.") });
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(true);
-        IUpdateTodoUseCase useCase = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -45,8 +43,8 @@ public class UpdateTodoUseCaseTest
     public void Should_NotUpdateTodo_WhenRepositoryNotFoundRegister()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
-        Guid id = Guid.NewGuid();
+        var request = TodoFaker.GenerateRequestObject();
+        var id = Guid.NewGuid();
         TodoViewModel model = null;
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
@@ -54,10 +52,9 @@ public class UpdateTodoUseCaseTest
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(false);
-        IUpdateTodoUseCase useCase = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<NotFoundObjectResult>()
@@ -72,18 +69,17 @@ public class UpdateTodoUseCaseTest
     public void Should_NotUpdateTodo_WhenRepositoryFailUpdate()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var request = TodoFaker.GenerateRequestObject();
+        var model = TodoFaker.GenerateTodoObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(false);
-        IUpdateTodoUseCase useCase = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -98,18 +94,17 @@ public class UpdateTodoUseCaseTest
     public void Should_UpdateTodo_WhenRepositoryUpdateSucess()
     {
         // Arrange
-        RequestTodoJson request = TodoFaker.GenerateRequestObject();
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var request = TodoFaker.GenerateRequestObject();
+        var model = TodoFaker.GenerateTodoObject();
         var validatorMock = new Mock<IValidator<RequestTodoJson>>();
         var resultValidator = new ValidationResult();
         validatorMock.Setup(s => s.Validate(request)).Returns(resultValidator);
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Update(It.IsAny<TodoViewModel>())).Returns(true);
-        IUpdateTodoUseCase useCase = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(model.Id, request);
+        var actual = new UpdateTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(model.Id, request);
 
         // Asserts
         actual.Should().BeOfType<OkObjectResult>()

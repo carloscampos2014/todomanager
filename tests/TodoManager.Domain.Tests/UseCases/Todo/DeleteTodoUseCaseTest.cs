@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Moq;
 using TodoManager.Domain.Contracts.Dto;
 using TodoManager.Domain.Contracts.Interfaces.Repositories;
-using TodoManager.Domain.Contracts.Interfaces.UseCases.Todo;
 using TodoManager.Domain.Tests.Faker;
 using TodoManager.Domain.UseCases.Todo;
 
@@ -16,15 +15,14 @@ public class DeleteTodoUseCaseTest
     public void Should_NotDeleteTodo_WhenRegistreNotFound()
     {
         // Arrange
-        Guid id = Guid.NewGuid();
+        var id = Guid.NewGuid();
         TodoViewModel model = null;
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Delete(model)).Returns(true);
-        IDeleteTodoUseCase useCase = new DeleteTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(id);
+        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(id);
 
         // Asserts
         actual.Should().BeOfType<NotFoundObjectResult>()
@@ -38,14 +36,13 @@ public class DeleteTodoUseCaseTest
     public void Should_NotDeleteTodo_WhenRepositoryFailDelete()
     {
         // Arrange
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var model = TodoFaker.GenerateTodoObject();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Delete(model)).Returns(false);
-        IDeleteTodoUseCase useCase = new DeleteTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(model.Id);
+        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(id);
 
         // Asserts
         actual.Should().BeOfType<ObjectResult>()
@@ -59,14 +56,13 @@ public class DeleteTodoUseCaseTest
     public void Should_DeleteTodo_WhenRepositoryExcludeSucess()
     {
         // Arrange
-        TodoViewModel model = TodoFaker.GenerateTodoObject();
+        var model = TodoFaker.GenerateTodoObject();
         var todoRespositoryMock = new Mock<ITodoRepository>();
         todoRespositoryMock.Setup(s => s.GetById(model.Id)).Returns(model);
         todoRespositoryMock.Setup(s => s.Delete(model)).Returns(true);
-        IDeleteTodoUseCase useCase = new DeleteTodoUseCase(todoRespositoryMock.Object);
 
         // Act
-        IActionResult actual = useCase.Execute(model.Id);
+        var actual = new DeleteTodoUseCase(todoRespositoryMock.Object).Execute(id);
 
         // Asserts
         actual.Should().BeOfType<NoContentResult>()
