@@ -9,6 +9,13 @@
 
 [![Build, Test, and Validate Coverage](https://github.com/carloscampos2014/todomanager/actions/workflows/ci.yml/badge.svg)](https://github.com/carloscampos2014/todomanager/actions/workflows/ci.yml)
 
+# Relatório de Cobertura
+
+O relatório de cobertura dos testes está disponível no GitHub Pages. Você pode acessá-lo clicando no link abaixo:
+
+[Ver Relatório de Cobertura](https://carloscampos2014.github.io/todomanager/)
+
+
 ## Objetivo
 
 API para CRUD de Lista de Tarefas

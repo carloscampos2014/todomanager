@@ -72,3 +72,31 @@ jobs:
 
             echo "Cobertura dos testes dentro do limite esperado"
         shell: bash
+
+      - name: Publish Coverage Report to GitHub Pages
+        run: |
+          # Cria um diretório para o relatório
+          mkdir coverage-report
+          cp -r tests/TodoManager.Domain.Tests/TestResults/coverage.cobertura.xml coverage-report/domain-coverage.xml
+          cp -r tests/TodoManager.Database.Sqlite.Tests/TestResults/coverage.cobertura.xml coverage-report/database-coverage.xml
+
+          # Opcional: você pode gerar um HTML a partir do XML de cobertura
+          # Exemplo: dotnet reportgenerator -reports:coverage-report/* -targetdir:coverage-report/html
+
+          # Configura Git
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+
+          # Cria o branch gh-pages
+          git checkout -b gh-pages
+
+          # Remove todos os arquivos existentes no branch
+          git rm -rf .
+
+          # Move o relatório para o diretório root
+          mv coverage-report/* .
+
+          # Adiciona e faz commit das mudanças
+          git add .
+          git commit -m "Atualizar relatório de cobertura"
+          git push --force origin gh-pages
