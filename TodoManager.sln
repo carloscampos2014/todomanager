@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.env = .env
 		.gitignore = .gitignore
+		.model-env = .model-env
 		.github\workflows\ci.yml = .github\workflows\ci.yml
 		pull_request_template.md = pull_request_template.md
 		README.md = README.md
@@ -45,6 +46,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Database.Sqlite
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Database.Sqlite.Tests", "tests\TodoManager.Database.Sqlite.Tests\TodoManager.Database.Sqlite.Tests.csproj", "{621C5A3E-A95D-4B65-9027-20985B949FF8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-CrossCutting", "4-CrossCutting", "{1DD24484-E595-40F2-9F9A-5882494E9EBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-CrossCutting", "4-CrossCutting", "{E9DC42A6-812A-4CCD-A1BD-1C16F92F784A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoManager.Ioc", "src\TodoManager.Ioc\TodoManager.Ioc.csproj", "{94E0A3B3-1E92-42B4-AD61-6DDE9DB02BEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +82,10 @@ Global
 		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{621C5A3E-A95D-4B65-9027-20985B949FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94E0A3B3-1E92-42B4-AD61-6DDE9DB02BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E0A3B3-1E92-42B4-AD61-6DDE9DB02BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E0A3B3-1E92-42B4-AD61-6DDE9DB02BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E0A3B3-1E92-42B4-AD61-6DDE9DB02BEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +105,9 @@ Global
 		{E648EE57-5DB6-4E88-9136-C2D375B06B59} = {4AF02D0D-DB72-4C46-8BF0-96581C826D05}
 		{B20CD2DD-CD1B-4663-8314-3C4040C1E172} = {4D12026E-06D1-4ED4-ADFD-C323F5DFD2CC}
 		{621C5A3E-A95D-4B65-9027-20985B949FF8} = {91B3B2D3-141E-4225-9E4D-3F8861B8C983}
+		{1DD24484-E595-40F2-9F9A-5882494E9EBF} = {B15A679A-42B9-4CC4-AC35-84852E4CAE9E}
+		{E9DC42A6-812A-4CCD-A1BD-1C16F92F784A} = {DB689DBD-F63A-41F0-AD19-8158FED3CE3A}
+		{94E0A3B3-1E92-42B4-AD61-6DDE9DB02BEC} = {1DD24484-E595-40F2-9F9A-5882494E9EBF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A4224EA-6B27-4ABB-90B6-42A360370691}

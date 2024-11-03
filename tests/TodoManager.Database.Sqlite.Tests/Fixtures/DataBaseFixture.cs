@@ -13,7 +13,7 @@ public class DataBaseFixture : IDisposable
     {
         string filename = Path.Combine(Directory.GetCurrentDirectory(), ".env");
         _databaseName = Path.Combine(Path.GetTempPath(), $"TestDb_{Guid.NewGuid()}.db");
-        File.WriteAllText( filename, $"DB_NAME ={_databaseName}" );
+        File.WriteAllText( filename, $"DB_NAME={_databaseName}" );
         _connectionFactory = new ConnectionFactory();
     }
 

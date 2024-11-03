@@ -32,7 +32,7 @@ public class UpdateTodoUseCaseTest
             .Execute(model.Id, request);
 
         // Asserts
-        actual.Should().BeOfType<ObjectResult>()
+        actual.Should().BeOfType<BadRequestObjectResult>()
             .Which.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
 
         validatorMock.Verify(s => s.Validate(request), Times.Exactly(1));

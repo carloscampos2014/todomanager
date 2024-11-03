@@ -11,7 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TodoManager.Domain.Contracts\TodoManager.Domain.Contracts.csproj" />
+    <ProjectReference Include="..\TodoManager.Ioc\TodoManager.Ioc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update=".env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

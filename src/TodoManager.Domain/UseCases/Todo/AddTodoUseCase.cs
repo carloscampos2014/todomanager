@@ -34,10 +34,7 @@ public class AddTodoUseCase : IAddTodoUseCase
                     Errors = resultValidator.Errors.Select( error => error.ErrorMessage).ToList(),
                 };
 
-                return new ObjectResult(error)
-                {
-                    StatusCode = StatusCodes.Status400BadRequest,
-                };
+                return new BadRequestObjectResult(error);
             }
 
             var model = new TodoViewModel() 

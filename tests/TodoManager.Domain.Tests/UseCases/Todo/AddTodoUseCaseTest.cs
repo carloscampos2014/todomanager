@@ -29,7 +29,7 @@ public class AddTodoUseCaseTest
         var actual = new AddTodoUseCase(todoRespositoryMock.Object, validatorMock.Object).Execute(request);
 
         // Asserts
-        actual.Should().BeOfType<ObjectResult>()
+        actual.Should().BeOfType<BadRequestObjectResult>()
             .Which.StatusCode.Should().Be(StatusCodes.Status400BadRequest);
 
         validatorMock.Verify(s => s.Validate(request), Times.Exactly(1));
