@@ -1,0 +1,294 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/runner/work/todomanager/todomanager/src/TodoManager.Ioc/TodoManager.Ioc.csproj": {}
+  },
+  "projects": {
+    "/home/runner/work/todomanager/todomanager/src/TodoManager.Database.Sqlite/TodoManager.Database.Sqlite.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/work/todomanager/todomanager/src/TodoManager.Database.Sqlite/TodoManager.Database.Sqlite.csproj",
+        "projectName": "TodoManager.Database.Sqlite",
+        "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Database.Sqlite/TodoManager.Database.Sqlite.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Database.Sqlite/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj": {
+                "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.35, )"
+            },
+            "DotNetEnv": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "System.Data.SQLite.Core": {
+              "target": "Package",
+              "version": "[1.0.119, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/runner/.dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj",
+        "projectName": "TodoManager.Domain.Contracts",
+        "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/runner/.dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/TodoManager.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/TodoManager.Domain.csproj",
+        "projectName": "TodoManager.Domain",
+        "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/TodoManager.Domain.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj": {
+                "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.10.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Core": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/runner/.dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/runner/work/todomanager/todomanager/src/TodoManager.Ioc/TodoManager.Ioc.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/runner/work/todomanager/todomanager/src/TodoManager.Ioc/TodoManager.Ioc.csproj",
+        "projectName": "TodoManager.Ioc",
+        "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Ioc/TodoManager.Ioc.csproj",
+        "packagesPath": "/home/runner/.nuget/packages/",
+        "outputPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Ioc/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/runner/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/runner/work/todomanager/todomanager/src/TodoManager.Database.Sqlite/TodoManager.Database.Sqlite.csproj": {
+                "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Database.Sqlite/TodoManager.Database.Sqlite.csproj"
+              },
+              "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj": {
+                "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain.Contracts/TodoManager.Domain.Contracts.csproj"
+              },
+              "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/TodoManager.Domain.csproj": {
+                "projectPath": "/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/TodoManager.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/home/runner/.dotnet/sdk/8.0.403/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

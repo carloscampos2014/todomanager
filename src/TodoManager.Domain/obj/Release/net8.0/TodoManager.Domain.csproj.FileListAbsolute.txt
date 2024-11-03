@@ -1,0 +1,16 @@
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/bin/Release/net8.0/TodoManager.Domain.deps.json
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/bin/Release/net8.0/TodoManager.Domain.dll
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/bin/Release/net8.0/TodoManager.Domain.pdb
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/bin/Release/net8.0/TodoManager.Domain.Contracts.dll
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/bin/Release/net8.0/TodoManager.Domain.Contracts.pdb
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.csproj.AssemblyReference.cache
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.AssemblyInfoInputs.cache
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.AssemblyInfo.cs
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.csproj.CoreCompileInputs.cache
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.sourcelink.json
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoMana.CF3A2DD6.Up2Date
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.dll
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/refint/TodoManager.Domain.dll
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/TodoManager.Domain.pdb
+/home/runner/work/todomanager/todomanager/src/TodoManager.Domain/obj/Release/net8.0/ref/TodoManager.Domain.dll
